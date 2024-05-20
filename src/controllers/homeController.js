@@ -18,9 +18,21 @@ let getDataTour = async (req, res, next) => {
   try {
     console.log(req.query);
     let tours = await tourService.filterTour(req.query);
-    console.log(tours);
     res.render("shop/filter-list-tour.ejs", {
       tours,
+      path: "/",
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+let getDataTourCommon = async (req, res, next) => {
+  try {
+    console.log("tung dang lam phan nay");
+    let toursCommon = await tourService.filterTourCommon(req.query);
+    res.render("shop/filter-common.ejs", {
+      tours: toursCommon,
       path: "/",
     });
   } catch (e) {
@@ -33,4 +45,5 @@ module.exports = {
   getLogin: getLogin,
   getSignUp: getSignUp,
   getDataTour: getDataTour,
+  getDataTourCommon: getDataTourCommon,
 };

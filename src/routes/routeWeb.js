@@ -11,6 +11,8 @@ let initWebRoutes = (app) => {
   router.get("/home", userController.handleLogin);
 
   router.get("/filter-list-tour", homeController.getDataTour);
+  router.get("/filter-common", homeController.getDataTourCommon);
+
   return app.use("/", router);
 };
 module.exports = initWebRoutes;

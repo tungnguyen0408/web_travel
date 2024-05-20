@@ -74,8 +74,34 @@ const filterTour = (searchParams) => {
   });
 };
 
+let filterTourCommon = (searchQuery) => {
+  console.log(searchQuery);
+  return new Promise((resolve, reject) => {
+    const whereClause = {};
+    for (const key in searchQuery) {
+      if (searchQuery.hasOwnProperty(key)) {
+        whereClause[key] = {
+          [Op.like]: `%${searchQuery[key]}%`,
+        };
+      }
+    }
+
+    db.Tour.findAll({
+      where: whereClause,
+      raw: true,
+    })
+      .then((tours) => {
+        resolve(tours);
+      })
+      .catch((error) => {
+        reject(error);
+      });
+  });
+};
+
 module.exports = {
   createNewTour: createNewTour,
   findAllTours: findAllTours,
   filterTour: filterTour,
+  filterTourCommon: filterTourCommon,
 };

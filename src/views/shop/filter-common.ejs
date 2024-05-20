@@ -16,10 +16,6 @@
       .row-filter{
         width: 90% !important; 
       }
-      .btn-filter-common{
-        position: relative; 
-        z-index: 9999999999; 
-      }
   </style>
   <body>
     <!--HEADER------------------------------------------------------------------------------- -->
@@ -28,24 +24,23 @@
   <div class="jumbotron text-center">
     <h2>Du lịch khắp nơi - Khám phá đất nước Việt Nam</h2>
     <p>Du lịch khắp Việt Nam</p>
-    <form action="/filter-common" method="GET" class="row g-3">
-      <div class="input-group" name="address">
+    <form action = "/filter-common" method = "GET">
+      <div class="input-group" name = "address">
         <input
           type="text"
           class="form-control"
           placeholder="Nhập địa điểm muốn đến..."
           name = "title"
         />
-        <div class="input-group-btn btn-filter-common">
+        <div class="input-group-btn">
           <button type="submit" class="btn btn-success">Tìm kiếm</button>
         </div>
       </div>
     </form>
-    
   </div>
 </header>
     <!-- Phần nội dung  -->
-    <h1 class="mx-auto">Tour mới nhất</h1>
+    <h1 class="mx-auto">Tour cần tìm</h1>
     <section class="main-section max-auto">
       <div class="container filter-admin">
         <div class="row row-filter">
@@ -89,7 +84,7 @@
             </div>
             <div class="col-md-3 container-button">
               <button class="btn btn-success filter-tour" type="submit">
-                Lọc các theo yêu cầu
+                Lọc các tour
               </button>
             </div>
           </form>

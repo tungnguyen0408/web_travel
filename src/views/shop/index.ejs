@@ -8,16 +8,16 @@
   <div class="jumbotron text-center">
     <h2>Du lịch khắp nơi - Khám phá đất nước Việt Nam</h2>
     <p>Du lịch khắp Việt Nam</p>
-    <form>
-      <div class="input-group">
+    <form action = "/filter-common" method = "GET">
+      <div class="input-group" >
         <input
-          type="email"
+          type="text"
           class="form-control"
           placeholder="Nhập địa điểm muốn đến..."
-          required
+          name = "title"
         />
         <div class="input-group-btn">
-          <button type="button" class="btn btn-success">Tìm kiếm</button>
+          <button type="submit" class="btn btn-success">Tìm kiếm</button>
         </div>
       </div>
     </form>
