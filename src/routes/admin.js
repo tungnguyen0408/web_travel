@@ -13,4 +13,6 @@ router.post("/add-tour", adminController.createTour);
 
 router.get("/add-tour", adminController.getAddTour);
 
+router.get("/get-response", adminController.getResponse);
+
 module.exports = router;

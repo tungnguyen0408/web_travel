@@ -31,9 +31,23 @@ exports.createTour = async (req, res, next) => {
 };
 
 exports.getAddTour = (req, res, next) => {
-  res.render("admin/add-tour", {
+  res.render("admin/list-response", {
     pageTitle: "Add Tour",
     path: "/admin/add-tour",
+    formsCSS: true,
+    productCSS: true,
+    activeAddProduct: true,
+  });
+};
+
+exports.getResponse = async (req, res, next) => {
+  let listFeedback = await tourService.getAllCustomerFeedback();
+  console.log("da vao duoc");
+  console.log(listFeedback);
+  res.render("admin/list-response", {
+    pageTitle: "Response Customer",
+    path: "/admin/get-response",
+    listFeedback: listFeedback,
     formsCSS: true,
     productCSS: true,
     activeAddProduct: true,

@@ -1,20 +1,33 @@
 "use strict";
-const dataTypes = require("sequelize/lib/dialects/postgres/data-types");
-var DataTypes = require("../../node_modules/sequelize/lib/data-types");
-const { Model } = require("sequelize");
+const { Model, DataTypes } = require("sequelize");
+
 module.exports = (sequelize, DataTypes) => {
-  class Tour_destination extends Model {
-    static associate(models) {}
+  class TourDestination extends Model {
+    static associate(models) {
+      this.belongsToMany(models.DetailTours, {
+        through: "DetailToursTourDestinations",
+        foreignKey: "TourDestinationId",
+      });
+    }
   }
-  Tour_destination.init(
+  TourDestination.init(
     {
-      id_tour: DataTypes.INTEGER,
-      id_destination: DataTypes.INTEGER,
+      id_tour_destination: DataTypes.INTEGER,
+      name_destination: DataTypes.STRING,
+      rate: DataTypes.FLOAT,
+      address: DataTypes.STRING,
+      Turn_Register: DataTypes.INTEGER,
+      image_1: DataTypes.STRING,
+      image_2: DataTypes.STRING,
+      image_3: DataTypes.STRING,
+      information_destination_1: DataTypes.STRING,
+      information_destination_2: DataTypes.STRING,
+      information_destination_3: DataTypes.STRING,
     },
     {
       sequelize,
-      modelName: "Tour_destination",
+      modelName: "TourDestination",
     }
   );
-  return Tour_destination;
+  return TourDestination;
 };

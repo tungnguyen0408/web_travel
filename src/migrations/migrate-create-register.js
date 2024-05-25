@@ -10,7 +10,10 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       username: { type: Sequelize.STRING },
-      id_tour: { type: Sequelize.INTEGER },
+      id_tour: { 
+          type: Sequelize.INTEGER,
+          
+      },
       departure_time: { type: Sequelize.STRING },
       number_passengers: { type: Sequelize.INTEGER },
       email: { type: Sequelize.STRING },

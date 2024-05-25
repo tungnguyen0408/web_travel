@@ -99,9 +99,23 @@ let filterTourCommon = (searchQuery) => {
   });
 };
 
+let getAllCustomerFeedback = async () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let responses = await db.Tour.findAll({
+        limit: 20, // Giới hạn số lượng phản hồi trả về
+      });
+      resolve(responses);
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
 module.exports = {
   createNewTour: createNewTour,
   findAllTours: findAllTours,
   filterTour: filterTour,
   filterTourCommon: filterTourCommon,
+  getAllCustomerFeedback: getAllCustomerFeedback,
 };
