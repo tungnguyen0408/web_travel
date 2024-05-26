@@ -1,17 +1,29 @@
 "use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("TourDestinations", {
+    await queryInterface.createTable("DetailTours", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      name_destination: { type: Sequelize.STRING },
-      rate: { type: Sequelize.FLOAT },
-      address: { type: Sequelize.STRING },
-      Turn_Register: { type: Sequelize.INTEGER },
+      name_tour: { type: Sequelize.STRING },
+      date: {
+        allowNull: false,
+        type: Sequelize.DATE,
+      },
+      time: { type: Sequelize.STRING },
+      origin_price: { type: Sequelize.DOUBLE },
+      price: { type: Sequelize.DOUBLE },
+      id_agency: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: "travel_agencies", // Tên bảng chứa trường khóa chính
+          key: "id", // Tên trường khóa chính trong bảng DetailTours
+        },
+      },
       image_1: { type: Sequelize.STRING },
       image_2: { type: Sequelize.STRING },
       image_3: { type: Sequelize.STRING },
@@ -29,6 +41,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("TourDestinations");
+    await queryInterface.dropTable("DetailTours");
   },
 };

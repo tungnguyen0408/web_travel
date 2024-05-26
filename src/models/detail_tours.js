@@ -4,15 +4,22 @@ const { Model, DataTypes } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class DetailTours extends Model {
     static associate(models) {
+      this.belongsTo(models.travel_agencies, { foreignKey: "id_agency" });
+
       this.belongsToMany(models.TourDestination, {
         through: "DetailToursTourDestinations",
         foreignKey: "DetailTourId",
       });
+      this.hasMany(models.Feedback);
     }
   }
   DetailTours.init(
     {
-      id_tour: DataTypes.INTEGER,
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true,
+      },
       name_tour: DataTypes.STRING,
       date: DataTypes.DATE,
       time: DataTypes.STRING,

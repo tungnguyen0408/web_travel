@@ -9,13 +9,13 @@ module.exports = (sequelize, DataTypes) => {
   travel_agencies.init(
     {
       id_agency: DataTypes.INTEGER,
-     name_vi: DataTypes.STRING,
-     name_en:  DataTypes.STRING,
-     license_number: DataTypes.STRING,
-     web: DataTypes.STRING,
-     phonenumber: DataTypes.STRING,
-     email:DataTypes.STRING,
-     address_agency:DataTypes.STRING,
+      name_vi: DataTypes.STRING,
+      name_en: DataTypes.STRING,
+      license_number: DataTypes.STRING,
+      web: DataTypes.STRING,
+      phonenumber: DataTypes.STRING,
+      email: DataTypes.STRING,
+      address_agency: DataTypes.STRING,
     },
     {
       sequelize,
