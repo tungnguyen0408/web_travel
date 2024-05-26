@@ -29,8 +29,8 @@ let getDataTour = async (req, res, next) => {
 
 let getDataTourCommon = async (req, res, next) => {
   try {
-    console.log("tung dang lam phan nay");
     let toursCommon = await tourService.filterTourCommon(req.query);
+
     res.render("shop/filter-common.ejs", {
       tours: toursCommon,
       path: "/",

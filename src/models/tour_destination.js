@@ -4,10 +4,10 @@ const { Model, DataTypes } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class TourDestination extends Model {
     static associate(models) {
-      this.belongsToMany(models.DetailTours, {
-        through: "DetailToursTourDestinations",
-        foreignKey: "TourDestinationId",
-      });
+      // this.belongsToMany(models.DetailTours, {
+      //   through: "DetailToursTourDestinations",
+      //   foreignKey: "TourDestinationId",
+      // });
     }
   }
   TourDestination.init(

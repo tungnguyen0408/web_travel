@@ -44,15 +44,6 @@ const filterTour = (searchParams) => {
       if (priceRange && priceRange.length === 2) {
         const minPrice = Number(priceRange[0].replace(/\./g, ""));
         const maxPrice = Number(priceRange[1].replace(/\./g, ""));
-        // Kiểm tra và thêm điều kiện 'start-destination' nếu không rỗng
-        // if (searchParams["start-destination"]) {
-        //   searchConditions.startDestination = searchParams["start-destination"];
-        // }
-
-        // // Kiểm tra và thêm điều kiện 'end-destination' nếu không rỗng
-        // if (searchParams["end-destination"]) {
-        //   searchConditions.endDestination = searchParams["end-destination"];
-        // }
         searchConditions.price = {
           [Op.between]: [minPrice, maxPrice],
         };
@@ -61,7 +52,7 @@ const filterTour = (searchParams) => {
       }
     }
 
-    db.Tour.findAll({
+    db.DetailTour.findAll({
       where: searchConditions,
       raw: true,
     })
@@ -77,16 +68,18 @@ const filterTour = (searchParams) => {
 let filterTourCommon = (searchQuery) => {
   console.log(searchQuery);
   return new Promise((resolve, reject) => {
+    const validColumns = ["name_tour"];
+
     const whereClause = {};
     for (const key in searchQuery) {
-      if (searchQuery.hasOwnProperty(key)) {
+      if (searchQuery.hasOwnProperty(key) && validColumns.includes(key)) {
         whereClause[key] = {
           [Op.like]: `%${searchQuery[key]}%`,
         };
       }
     }
 
-    db.Tour.findAll({
+    db.DetailTour.findAll({
       where: whereClause,
       raw: true,
     })
@@ -99,17 +92,50 @@ let filterTourCommon = (searchQuery) => {
   });
 };
 
+// let getAllCustomerFeedback = async () => {
+//   return new Promise(async (resolve, reject) => {
+//     try {
+//       let responses = await db.Fee.findAll({
+//         limit: 20,
+//       });
+//       resolve(responses);
+//     } catch (e) {
+//       reject(e);
+//     }
+//   });
+// };
+
+// let getAllCustomerFeedback = async () => {
+//   return new Promise(async (resolve, reject) => {
+//     try {
+//       let responses = await db.Feedback.findAll({
+//         attributes: ["name", "id_tour", "rate", "day", "note"],
+//         limit: 20,
+//       });
+//       resolve(responses);
+//     } catch (e) {
+//       reject(e);
+//     }
+//   });
+// };
 let getAllCustomerFeedback = async () => {
-  return new Promise(async (resolve, reject) => {
-    try {
-      let responses = await db.Tour.findAll({
-        limit: 20, // Giới hạn số lượng phản hồi trả về
-      });
-      resolve(responses);
-    } catch (e) {
-      reject(e);
-    }
-  });
+  try {
+    let feedbacks = await db.Feedback.findAll({
+      attributes: ["name", "rate", "day", "note"],
+      include: [
+        {
+          model: db.DetailTour,
+          attributes: ["name_tour"], // Đổi tên cột thành tên cột thực tế trong bảng "DetailTours"
+          as: "tour",
+        },
+      ],
+      limit: 20,
+    });
+    return feedbacks;
+  } catch (error) {
+    console.error("Error when fetching customer feedback:", error);
+    throw error;
+  }
 };
 
 module.exports = {

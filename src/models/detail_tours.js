@@ -29,9 +29,9 @@ module.exports = (sequelize, DataTypes) => {
       image_1: DataTypes.STRING,
       image_2: DataTypes.STRING,
       image_3: DataTypes.STRING,
-      information_tour_1: DataTypes.STRING,
-      information_tour_2: DataTypes.STRING,
-      information_tour_3: DataTypes.STRING,
+      information_destination_2: DataTypes.STRING,
+      information_destination_2: DataTypes.STRING,
+      information_destination_2: DataTypes.STRING,
     },
     {
       sequelize,

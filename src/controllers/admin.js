@@ -1,4 +1,4 @@
-const Tour = require("../models/tour");
+const TourDetail = require("../models/detail_tours");
 const tourService = require("../service/tourService");
 
 exports.getTours = (req, res, next) => {
@@ -43,11 +43,10 @@ exports.getAddTour = (req, res, next) => {
 exports.getResponse = async (req, res, next) => {
   let listFeedback = await tourService.getAllCustomerFeedback();
   console.log("da vao duoc");
-  console.log(listFeedback);
   res.render("admin/list-response", {
     pageTitle: "Response Customer",
     path: "/admin/get-response",
-    listFeedback: listFeedback,
+    feedbacks: listFeedback, // Đảm bảo rằng tên biến truyền vào là "feedbacks"
     formsCSS: true,
     productCSS: true,
     activeAddProduct: true,
