@@ -2,18 +2,18 @@
 const { Model, DataTypes } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
-  class DetailTours extends Model {
+  class DetailTour extends Model {
     static associate(models) {
-      this.belongsTo(models.travel_agencies, { foreignKey: "id_agency" });
+      this.belongsTo(models.Travel_agency, { foreignKey: "id_agency" });
 
       this.belongsToMany(models.TourDestination, {
-        through: "DetailToursTourDestinations",
+        through: "DetailToursTourDestination",
         foreignKey: "DetailTourId",
       });
       this.hasMany(models.Feedback);
     }
   }
-  DetailTours.init(
+  DetailTour.init(
     {
       id: {
         type: DataTypes.INTEGER,
@@ -35,8 +35,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "DetailTours",
+      modelName: "DetailTour",
     }
   );
-  return DetailTours;
+  return DetailTour;
 };

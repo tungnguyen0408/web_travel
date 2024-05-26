@@ -2,12 +2,12 @@
 const { Model, DataTypes } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
-  class DetailToursTourDestinations extends Model {
+  class DetailToursTourDestination extends Model {
     static associate(models) {
       // Khai báo các mối quan hệ ở đây nếu cần
     }
   }
-  DetailToursTourDestinations.init(
+  DetailToursTourDestination.init(
     {
       DetailTourId: {
         type: DataTypes.INTEGER,
@@ -26,8 +26,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "DetailToursTourDestinations",
+      modelName: "DetailToursTourDestination",
     }
   );
-  return DetailToursTourDestinations;
+  return DetailToursTourDestination;
 };

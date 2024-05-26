@@ -3,10 +3,10 @@ const dataTypes = require("sequelize/lib/dialects/postgres/data-types");
 var DataTypes = require("../../node_modules/sequelize/lib/data-types");
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class travel_agencies extends Model {
+  class Travel_agency extends Model {
     static associate(models) {}
   }
-  travel_agencies.init(
+  Travel_agency.init(
     {
       id_agency: DataTypes.INTEGER,
       name_vi: DataTypes.STRING,
@@ -19,8 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "travel_agencies",
+      modelName: "Travel_agency",
     }
   );
-  return travel_agencies;
+  return Travel_agency;
 };

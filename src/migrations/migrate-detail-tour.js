@@ -20,7 +20,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: "travel_agencies", // Tên bảng chứa trường khóa chính
+          model: "Travel_agencies", // Tên bảng chứa trường khóa chính
           key: "id", // Tên trường khóa chính trong bảng DetailTours
         },
       },
